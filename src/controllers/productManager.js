@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 
 class ProductManager {
   constructor() {
-    this.path = "./products.json";
+    this.path = "src/database/products.json";
   }
 
   async getProducts() {

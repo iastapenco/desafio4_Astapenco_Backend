@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 
 class CartManager {
   constructor() {
-    this.path = "./carts.json";
+    this.path = "src/database/carts.json";
   }
 
   async getCarts() {
