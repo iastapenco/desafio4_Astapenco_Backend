@@ -4,6 +4,11 @@ import CartManager from "../controllers/cartManager.js";
 const cartsRouter = Router();
 const cartManager = new CartManager();
 
+cartsRouter.get("/", async (req, res) => {
+  const listCarts = await cartManager.getCarts();
+  res.status(200).send(listCarts);
+});
+
 cartsRouter.post("/", async (req, res) => {
   const newCart = await cartManager.addCart();
   if (newCart) {
