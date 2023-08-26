@@ -52,8 +52,9 @@ io.on("connection", (socket) => {
 app.use("/api/products", prodsRouter);
 app.use("/api/carts", cartsRouter);
 app.get("/static", (req, res) => {
-  res.render("chat", {
-    title: "chat",
+  res.render("realTimeProducts", {
+    css: "style.css",
+    js: "realTimeProducts.js",
   });
 });
 

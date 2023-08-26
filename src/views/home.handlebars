@@ -1,13 +1,8 @@
-<h1>Hola, {{user.nombre}}</h1>
 
-{{#if esTutor}}
-<p>Sos Tutor</p>
-{{#each cursos}}
+{{#each prods}}
     <div>
-        <p>{{this.numCurso}} {{this.dia}} {{this.horario}}</p>
+        <p>`Productos: ${prods}`</p>
     </div>
 {{/each}}
-{{else}}
-<p>No sos Tutor</p>
-{{/if}}
+
 

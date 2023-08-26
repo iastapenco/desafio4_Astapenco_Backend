@@ -11,7 +11,6 @@ form.addEventListener("submit", (e) => {
 });
 
 botonProds.addEventListener("click", () => {
-  console.log("Hola");
   socket.on("prods", (prods) => {
     console.log(prods);
   });
