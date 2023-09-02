@@ -1,4 +1,6 @@
+<h1>Lista de Productos</h1>
 
+<div id="listaProductos">
 {{#each listaproductos}}
 
 <div>
@@ -11,9 +13,11 @@
   </div>
   <h3>Stock: {{stock}}</h3>  
   <h3>Código: {{code}}</h3>
-</div>     
+   </div>  
     
 {{/each}}
+</div>
 
-
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>
 
