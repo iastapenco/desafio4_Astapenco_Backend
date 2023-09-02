@@ -1,7 +1,9 @@
 import express from "express";
 import multer from "multer";
 import prodsRouter from "./routes/products.routes.js";
+import viewRouter from "./routes/view.routes.js";
 import cartsRouter from "./routes/carts.routes.js";
+import ProductManager from "./controllers/productManager.js";
 import { engine } from "express-handlebars";
 import { __dirname } from "./path.js";
 import { Server } from "socket.io";
@@ -9,6 +11,8 @@ import path from "path";
 
 const PORT = 8080;
 const app = express();
+
+const prodsManager = new ProductManager();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -32,31 +36,19 @@ const upload = multer({ storage: storage });
 app.use("/static", express.static(path.join(__dirname, "/public")));
 const io = new Server(server);
 
-const mensajes = [];
-const prods = [];
-
 io.on("connection", (socket) => {
-  console.log("Servidor Socket.io conectado");
-  socket.on("mensaje", (infoMensaje) => {
-    console.log(infoMensaje);
-    mensajes.push(infoMensaje);
-    socket.emit("mensajes", mensajes);
-  });
+  console.log(`Servidor Socket.io del cliente conectado con ${socket.id}`);
 
-  socket.on("nuevoProducto", (nuevoProd) => {
-    prods.push(nuevoProd);
-    socket.emit("prods", prods);
+  socket.on("nuevoProducto", async (data) => {
+    const updatedProduct = await prodsManager.addProduct(data);
+    socket.emit("productoUpdated", updatedProduct);
+    console.log(updatedProduct);
   });
 });
 
 app.use("/api/products", prodsRouter);
 app.use("/api/carts", cartsRouter);
-app.get("/static", (req, res) => {
-  res.render("realTimeProducts", {
-    css: "style.css",
-    js: "realTimeProducts.js",
-  });
-});
+app.use("/", viewRouter);
 
 app.post("/upload", upload.single("product"), (req, res) => {
   console.log(req.file);

@@ -30,24 +30,27 @@ class ProductManager {
     }
   }
 
-  async addProduct(title, price, category, code, description, status, stock) {
+  async addProduct(data) {
     const id = await this.autoId();
     const products = JSON.parse(await fs.readFile(this.path, "utf-8"));
-    const producto = products.find((prod) => prod.code === code);
+    const { title, price, category, code, description, stock } = data;
+    let producto = products.find((prod) => prod.code === code);
 
     if (!producto) {
-      products.push({
+      producto = {
         title,
         price,
         category,
         id,
         code,
         description,
-        status,
         stock,
-      });
+        status: true,
+      };
+      products.push(producto);
       await fs.writeFile(this.path, JSON.stringify(products));
     }
+    return producto;
   }
 
   async updateProduct(

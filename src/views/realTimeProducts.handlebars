@@ -15,4 +15,21 @@
     <button type="submit">Enviar</button>
 </form><br><br>
 
-<button id="botonProductos">Mostrar Productos</button>
+<div id="listaProductos">
+{{#each listaproductos}}
+
+<div>
+  <h2>{{title}}</h2>
+  <h3>Precio: ${{price}}</h3>
+  <h3>Categoría: {{category}}</h3>
+  <div>
+    <h3>Descripción:</h3>
+    <p>{{description}}</p>
+  </div>
+  <h3>Stock: {{stock}}</h3>  
+  <h3>Código: {{code}}</h3>
+   </div>  
+    
+{{/each}}
+</div>
+<script src="/socket.io/socket.io.js"></script>
