@@ -1,36 +1,35 @@
 <h1>Crear Nuevo Producto</h1>
 <form id="idForm">
-    <label for="title">Title</label>
+    <label for="title" class="form-label">Title</label>
     <input type="text" required name="title">
-    <label for="description">Description</label>
+    <label for="description" class="form-label">Description</label>
     <input type="text" required name="description">
-    <label for="category">Category</label>
+    <label for="category" class="form-label">Category</label>
     <input type="text" required name="category">
-    <label for="price">Price</label>
+    <label for="price" class="form-label">Price</label>
     <input type="number" required name="price">
-    <label for="stock">Stock</label>
+    <label for="stock" class="form-label">Stock</label>
     <input type="number" required name="stock">
-    <label for="code">Code</label>
+    <label for="code" class="form-label">Code</label>
     <input type="string" required name="code">
-    <button type="submit">Enviar</button>
+    <button type="submit" class="btn btn-primary">Enviar</button>
 </form><br><br>
 
 <h1>Lista de Productos</h1>
 
-<div id="listaProductos">
+<div id="listaProductos" class="row-gap-3 d-flex align-content-around flex-wrap" >
 {{#each listaproductos}}
 
-<div class="producto">
-  <h2>{{title}}</h2>
-  <h3>Precio: ${{price}}</h3>
-  <h3>Categoría: {{category}}</h3>
-  <div>
-    <h3>Descripción:</h3>
-    <p>{{description}}</p>
+<div class="card text-center mt-2 mb-2" style="width: 18rem;">
+  <h2 class="card-title">{{title}}</h2>
+  <h4>Precio: ${{price}}</h4>
+  <h5>Categoría: {{category}}</h5>
+  <div class="border rounded-4"> 
+    <h4>Descripción:</h4>
+    <p class="card-text">{{description}}</p>
   </div>
-  <h3>Stock: {{stock}}</h3>  
-  <h3>Código: {{code}}</h3>
-   </div>  
+  <h5 class="mt-2">Stock: {{stock}} || Código:{{code}}</h5>  
+</div>  
     
 {{/each}}
 </div>
