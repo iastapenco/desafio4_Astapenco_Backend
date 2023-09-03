@@ -37,7 +37,7 @@ app.use("/static", express.static(path.join(__dirname, "/public")));
 const io = new Server(server);
 
 io.on("connection", (socket) => {
-  console.log(`Servidor Socket.io del cliente conectado con ${socket.id}`);
+  console.log(`Servidor Socket.io del cliente conectado con id: ${socket.id}`);
 
   socket.on("nuevoProducto", async (data) => {
     const updatedProduct = await prodsManager.addProduct(data);

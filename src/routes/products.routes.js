@@ -24,7 +24,7 @@ prodsRouter.get("/:pid", async (req, res) => {
 });
 
 prodsRouter.post("/", async (req, res) => {
-  const { title, price, category, code, description, status, stock } = req.body;
+  const { title, price, category, code, description, stock } = req.body;
   const confirm = await productManager.getProductByCode(code);
   if (confirm) {
     res.status(400).send("Producto ya existente");
@@ -35,7 +35,6 @@ prodsRouter.post("/", async (req, res) => {
       category,
       code,
       description,
-      status,
       stock
     );
     if (add) {
