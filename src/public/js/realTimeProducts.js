@@ -14,14 +14,15 @@ form.addEventListener("submit", (e) => {
 socket.on("productoUpdated", (prod) => {
   const listaProductos = document.getElementById("listaProductos");
   const divProduct = document.createElement("div");
-  divProduct.innerHTML = ` <h2>${prod.title}</h2>
-  <h3>Precio:$ ${prod.price} </h3>
-  <h3>Categoría: ${prod.category}</h3>
-  <div>
-    <h3>Descripción:</h3>
-    <p>${prod.description}</p>
+  divProduct.setAttribute("class", "card text-center mt-2 mb-2");
+  divProduct.setAttribute("style", "width: 18rem");
+  divProduct.innerHTML = ` <h2 class="card-title">${prod.title}</h2>
+  <h4>Precio: $${prod.price}</h4>
+  <h5>Categoría: ${prod.category}</h5>
+  <div class="border rounded-4">
+    <h4>Descripción:</h4>
+    <p class="card-text">${prod.description}</p>
   </div>
-  <h3>Stock: ${prod.stock}</h3>  
-  <h3>Código: ${prod.code}</h3>`;
+  <h5 class="mt-2">Stock: ${prod.stock} || Código:${prod.code}</h5>`;
   listaProductos.appendChild(divProduct);
 });
